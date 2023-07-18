@@ -1,0 +1,683 @@
+{
+	"info": {
+		"_postman_id": "9e12c808-5416-4d8f-b1d6-d31c5a76973b",
+		"name": "TrabalhoFinal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28201062"
+	},
+	"item": [
+		{
+			"name": "Remover produtos DB",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Resposta da requisição\r",
+							"const json_response = pm.response.json();\r",
+							"\r",
+							"// Verificação do status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Verificação do Content-Type\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"// Verificação da mensagem\r",
+							"pm.test(\"Mensagem está correta\", function () {\r",
+							"    pm.expect(json_response).to.eql({\"message\": \"A lista do supermercado está vazia!\"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:5000/produtos/",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "5000",
+					"path": [
+						"produtos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar produtos DB",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Resposta da requisição\r",
+							"const json_response = pm.response.json();\r",
+							"\r",
+							"// Verificação do status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Verificação do Content-Type\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"// Verificação da mensagem\r",
+							"pm.test(\"Mensagem está correta\", function () {\r",
+							"    pm.expect(json_response).to.eql({\"message\": \"A lista do supermercado está vazia!\"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:5000/produtos",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "5000",
+					"path": [
+						"produtos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adicionar produto DB",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Resposta da requisição\r",
+							"const json_response = pm.response.json();\r",
+							"\r",
+							"// Verificação do status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Verificação do Content-Type\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"// Verificação da mensagem\r",
+							"pm.test(\"Mensagem está correta\", function () {\r",
+							"    // Salva o id atual para realizar atualização\r",
+							"    pm.collectionVariables.set(\"id_produto_atualizar\", json_response.id);\r",
+							"    \r",
+							"    pm.expect(json_response.item).eql(\"Tambaqui M\");\r",
+							"    pm.expect(json_response.descricao).eql(\"Um peixe gostoso\");\r",
+							"    pm.expect(json_response.quantidade).eql(20);\r",
+							"    pm.expect(json_response.preco).eql(120.0);\r",
+							"    pm.expect(json_response.tipo).eql(\"comida\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"item\": \"Tambaqui M\",\r\n    \"descricao\": \"Um peixe gostoso\",\r\n    \"quantidade\": 20,\r\n    \"preco\": 120.0,\r\n    \"tipo\" : \"comida\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:5000/produtos",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "5000",
+					"path": [
+						"produtos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remover produto DB",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Resposta da requisição\r",
+							"const json_response = pm.response.json();\r",
+							"\r",
+							"// Verificação do status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Verificação do Content-Type\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"// Verificação da mensagem\r",
+							"pm.test(\"Mensagem está correta\", function () {\r",
+							"    pm.expect(json_response).to.eql({\"message\":\"Produto apagado com sucesso!\"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:5000/produtos/{{id_produto_atualizar}}",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "5000",
+					"path": [
+						"produtos",
+						"{{id_produto_atualizar}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adicionar produto 2 DB",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Resposta da requisição\r",
+							"const json_response = pm.response.json();\r",
+							"\r",
+							"// Verificação do status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Verificação do Content-Type\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"// Verificação da mensagem\r",
+							"pm.test(\"Mensagem está correta\", function () {\r",
+							"    // Salva o id atual para realizar atualização\r",
+							"    pm.collectionVariables.set(\"id_produto_atualizar\", json_response.id);\r",
+							"    \r",
+							"    pm.expect(json_response.item).eql(\"Tambaqui M\");\r",
+							"    pm.expect(json_response.quantidade).eql(20);\r",
+							"    pm.expect(json_response.preco).eql(120.0);\r",
+							"    pm.expect(json_response.tipo).eql(\"comida\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"item\": \"Tambaqui M\",\r\n    \"descricao\": \"Um peixinho\",\r\n    \"quantidade\": 20,\r\n    \"preco\": 120.0,\r\n    \"tipo\" : \"comida\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:5000/produtos",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "5000",
+					"path": [
+						"produtos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remover produtos carrinho",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Resposta da requisição\r",
+							"const json_response = pm.response.json();\r",
+							"\r",
+							"// Verificação do status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Verificação do Content-Type\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"// Verificação da mensagem\r",
+							"pm.test(\"Mensagem está correta\", function () {\r",
+							"    pm.expect(json_response).to.eql({\"message\":\"Lista apagada com sucesso!\"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:5000/carrinho",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "5000",
+					"path": [
+						"carrinho"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar produtos carrinho",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Resposta da requisição\r",
+							"const json_response = pm.response.json();\r",
+							"\r",
+							"// Verificação do status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Verificação do Content-Type\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"// Verificação da mensagem\r",
+							"pm.test(\"Mensagem está correta\", function () {\r",
+							"    pm.expect(json_response).to.eql({\"message\": \"Carrinho vazio!\"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:5000/carrinho",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "5000",
+					"path": [
+						"carrinho"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adicionar produto carrinho",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Resposta da requisição\r",
+							"const json_response = pm.response.json();\r",
+							"\r",
+							"// Verificação do status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Verificação do Content-Type\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"// Verificação da mensagem\r",
+							"pm.test(\"Mensagem está correta\", function () {\r",
+							"    pm.expect(json_response).to.include({\"message\":\"Produto adicionado com sucesso!\"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"item\": \"Tambaqui M\",\r\n  \"quantidade\":2,\r\n  \"tipo\": \"carrinho\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:5000/carrinho",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "5000",
+					"path": [
+						"carrinho"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Valor carrinho",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Resposta da requisição\r",
+							"const json_response = pm.response.json();\r",
+							"\r",
+							"// Verificação do status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Verificação do Content-Type\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"// Verificação da mensagem\r",
+							"pm.test(\"Mensagem está correta\", function () {\r",
+							"    pm.expect(json_response).to.eql({\"message\":\"Total do pedido: R$240.0\"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://0.0.0.0:5000/carrinho/valor",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "5000",
+					"path": [
+						"carrinho",
+						"valor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Finalizar pedido",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Resposta da requisição\r",
+							"const json_response = pm.response.json();\r",
+							"\r",
+							"// Verificação do status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Verificação do Content-Type\r",
+							"pm.test(\"Content-Type header is application/json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"// Verificação da mensagem\r",
+							"pm.test(\"Mensagem está correta\", function () {\r",
+							"    pm.expect(json_response).to.eql({\"message\":\"Pedido finalizado com sucesso!\"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:5000/carrinho/finalizar",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "5000",
+					"path": [
+						"carrinho",
+						"finalizar"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "id_produto_atualizar",
+			"value": ""
+		}
+	]
+}
